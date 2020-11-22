@@ -2,6 +2,7 @@
 package main
 
 import (
+	//pgl "github.com/faiface/pixel/pixelgl"
 	imdraw "github.com/faiface/pixel/imdraw"
 	cnames "golang.org/x/image/colornames"
 )
@@ -19,12 +20,7 @@ func DrawCell (imd *imdraw.IMDraw, c *Cell) {
 	imd.Rectangle(0)
 }
 
-func DrawGrid(imd *imdraw.IMDraw, grid *Grid) {
-
-	for _, row := range grid.Board() {
-		for _, col := range row {
-			DrawCell(imd, col)
-		}
-	}
-}
-
+// TODO: add dynamic initial state before running
+//func DrawInitialState (imd *imdraw.IMDraw) {
+//
+//}
