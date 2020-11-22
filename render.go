@@ -30,17 +30,11 @@ func Run() {
 	imd := imdraw.New(nil)
 
 
-	grid := NewGrid(3, 3)
-	// DrawGrid(imd, grid)
-
-	// fmt.Println("entering main loops")
-
-	DrawGridInitial(imd, grid)
+	for grid := NewGrid(ROWS, COLS); ! window.Closed(); {
+		window.Clear(cnames.Lightslategrey)
 
 
-	for !window.Closed() {
-		window.Clear(cnames.Aliceblue)
-
+		DrawGrid(imd, grid)
 
 		imd.Draw(window)
 		window.Update()
