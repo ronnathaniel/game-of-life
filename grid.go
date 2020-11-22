@@ -2,8 +2,7 @@
 package main
 
 import (
-    "fmt"
-    pixel "github.com/faiface/pixel"
+	pixel "github.com/faiface/pixel"
 )
 
 type Grid struct {
@@ -20,14 +19,11 @@ func NewGrid(rows, cols int) *Grid {
     for j := 0; j < rows; j++ {
 		t = []*Cell{}
 		for i := 0; i < cols; i++ {
-			c := NewCell(pixel.V(float64(i), float64(j)))
-			fmt.Println("adding cell", c)
+			c := NewCell(pixel.V(float64(i * CELL_W), float64(j * CELL_H)))
 			t = append(t, c)
 		}
 		b = append(b, t)
 	}
-
-	fmt.Println("finished creating grid")
 
     return &Grid{
     	b: b,
