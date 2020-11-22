@@ -9,6 +9,11 @@ an artist's rendition of Conway's [game of life](https://en.wikipedia.org/wiki/C
 ![demo](img/demo.gif)
 
 
+## Technology
+
+[Pixel](https://github.com/faiface/pixel) - A hand-crafted 2D game library in Go
+
+
 ## Usage
 
 The Game of Life is a zero-person game, and critically depends on 
@@ -38,6 +43,4 @@ build the application
 build and save package
 
     go install
-    
-
     
