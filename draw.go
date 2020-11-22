@@ -2,8 +2,6 @@
 package main
 
 import (
-	"fmt"
-	pixel "github.com/faiface/pixel"
 	imdraw "github.com/faiface/pixel/imdraw"
 	cnames "golang.org/x/image/colornames"
 )
@@ -11,15 +9,22 @@ import (
 
 
 func DrawCell (imd *imdraw.IMDraw, c *Cell) {
-	imd.Color = cnames.Darkolivegreen
+
+	if c.IsAlive() {
+		imd.Color = cnames.Darkolivegreen
+	} else {
+		imd.Color = cnames.Lightslategrey
+	}
 	imd.Push(c.Pos(), c.EndPos())
 	imd.Rectangle(0)
 }
 
 func DrawGrid(imd *imdraw.IMDraw, grid *Grid) {
 
-	fmt.Print(grid)
-
-	DrawCell(imd, NewCell(pixel.V(200, 200)))
+	for _, row := range grid.Board() {
+		for _, col := range row {
+			DrawCell(imd, col)
+		}
+	}
 }
 
