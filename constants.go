@@ -2,11 +2,11 @@
 package main
 
 const (
-	SCREEN_W = 400
-	SCREEN_H = 400
+	SCREEN_W = 600
+	SCREEN_H = 300
 
-	ROWS = 20
-	COLS = 20
+	ROWS = 30
+	COLS = 60
 
 	CELL_W = SCREEN_W / COLS
 	CELL_H = SCREEN_H / ROWS
