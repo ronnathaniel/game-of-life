@@ -32,8 +32,8 @@ func Run() {
 
 	for ! window.Closed() {
 		window.Clear(cnames.Lightslategrey)
-		
-		DrawGrid(imd, grid)
+
+		UpdateGrid(imd, grid)
 
 		imd.Draw(window)
 		window.Update()
