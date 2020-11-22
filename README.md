@@ -2,11 +2,11 @@
 
 an artist's rendition of Conway's [game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
 
-![game demo](https://media.giphy.com/media/iw2GFMAnlCzaR2Hpby/giphy.gif)
-
 <!---
-![demo](img/demo.gif)
+![game demo](https://media.giphy.com/media/iw2GFMAnlCzaR2Hpby/giphy.gif)
 --->
+
+![demo](img/demo.gif)
 
 
 ## Usage
