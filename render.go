@@ -13,9 +13,11 @@ import (
 
 func Run() {
 	config := pgl.WindowConfig{
-		Title:  "SamoGamO",
-		Bounds: pixel.R(0, 0, 500, 500),
+		Title:  "SamoGamOlyfe",
+		Bounds: pixel.R(0, 0, 400, 400),
 		VSync:  true,
+		AlwaysOnTop: true,
+		TransparentFramebuffer: true,
 	}
 
 	window, err := pgl.NewWindow(config)

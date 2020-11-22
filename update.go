@@ -15,16 +15,40 @@ func UpdateGrid(imd *imdraw.IMDraw, g *Grid) {
 	}
 }
 
+// TODO: redo logic, make look good. switch is ugly
 func UpdateCell(c *Cell, g *Grid, xPos, yPos int) {
 
-	fmt.Println(c)
+	_ = fmt.Sprintln(c)
 
 	neighbors := CellLiveNeighbors(g, xPos, yPos)
-	fmt.Println("cell live neighbors: ", neighbors)
+
+	if neighbors  > 0 {
+		fmt.Println("cell live neighbors: ", neighbors)
+	}
+
+
 
 	//if neighbors < 2 || 3 < neighbors {
 	//	c.Die()
+	//} else {
+	//
 	//}
+
+
+	if c.IsAlive() {
+
+		if 1 < neighbors && neighbors < 4 {
+			c.Populate()
+		} else {
+
+			c.Die()
+		}
+	} else {
+		if neighbors == 3 {
+			c.Populate()
+		}
+	}
+
 
 
 }

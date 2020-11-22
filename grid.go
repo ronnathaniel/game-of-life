@@ -2,7 +2,6 @@
 package main
 
 import (
-	"fmt"
 	pixel "github.com/faiface/pixel"
 )
 
@@ -23,7 +22,7 @@ func NewGrid(rows, cols int) *Grid {
 			c := NewCell(pixel.V(float64(i * CELL_W), float64(j * CELL_H)))
 
 			// TODO: CHANGE THIS - 100 means all first 100 rows are populated initially
-			if j < 100 {
+			if (12 < j && j < 15) || (1 < i && i < 4) {
 				c.Populate()
 			}
 			t = append(t, c)
@@ -43,10 +42,11 @@ func (g *Grid) Board() [][]*Cell {
 
 func IsOutOfBounds(x, y int) bool {
 	if x < 0 || y < 0 || x >= COLS || y >= ROWS {
-		return false
+		//fmt.Println("out of bounds - ", y, x)
+		return true
 	}
 
-	return true
+	return false
 }
 
 func CellLiveNeighbors(g *Grid, xPos, yPos int) (count int) {
@@ -55,14 +55,15 @@ func CellLiveNeighbors(g *Grid, xPos, yPos int) (count int) {
 	for horiz := -1; horiz < 2; horiz++ {
 		for vert := -1; vert < 2; vert++ {
 
-			if (horiz == 0 && vert == 0) || IsOutOfBounds(xPos, yPos) {
+			if IsOutOfBounds(xPos + horiz, yPos + vert) {
+				//fmt.Println("lomatin- ", yPos + vert, xPos + horiz)
 				continue
 			}
 
-			fmt.Println("vert: ", vert, "horiz: ", horiz)
-			if g.Board()[vert][horiz].IsAlive() {
+			//fmt.Println("vert: ", vert, "horiz: ", horiz)
+			if g.Board()[yPos + vert][xPos + horiz].IsAlive() {
 				count++
-				fmt.Println("count, ", count)
+				//fmt.Println("count, ", count)
 			}
 		}
 	}
