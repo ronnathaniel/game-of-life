@@ -10,9 +10,6 @@ import (
 	cnames "golang.org/x/image/colornames"
 )
 
-func main() {
-	pgl.Run(Run)
-}
 
 func Run() {
 	config := pgl.WindowConfig{
