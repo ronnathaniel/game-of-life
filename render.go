@@ -28,12 +28,11 @@ func Run() {
 	}
 
 	imd := imdraw.New(nil)
+	grid := NewGrid(ROWS, COLS)
 
-
-	for grid := NewGrid(ROWS, COLS); ! window.Closed(); {
+	for ! window.Closed() {
 		window.Clear(cnames.Lightslategrey)
-
-
+		
 		DrawGrid(imd, grid)
 
 		imd.Draw(window)
