@@ -13,9 +13,9 @@ type Cell struct {
 
 func NewCell(v pixel.Vec) *Cell {
 	return &Cell{
-		alive:      true,
+		alive:      false,
         position:   v,
-        dimensions: v.Add(pixel.V(20, 20)),
+        dimensions: pixel.V(SCREEN_W / COLS, SCREEN_H / ROWS),
 	}
 }
 
