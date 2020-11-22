@@ -15,7 +15,7 @@ func NewCell(v pixel.Vec) *Cell {
 	return &Cell{
 		alive:      false,
         position:   v,
-        dimensions: pixel.V(SCREEN_W / COLS, SCREEN_H / ROWS),
+        dimensions: pixel.V(CELL_W, CELL_H),
 	}
 }
 
