@@ -3,10 +3,12 @@ package main
 
 import (
 	pixel "github.com/faiface/pixel"
+	imdraw "github.com/faiface/pixel/imdraw"
 )
 
 type Grid struct {
-	b [][]*Cell
+	b 			[][]*Cell
+	settingUp	bool
 }
 
 // grid should be thought of as any 2D matrix
@@ -20,11 +22,6 @@ func NewGrid(rows, cols int) *Grid {
 		t = []*Cell{}
 		for i := 0; i < cols; i++ {
 			c := NewCell(pixel.V(float64(i * CELL_W), float64(j * CELL_H)))
-
-			// TODO: CHANGE THIS - 100 means all first 100 rows are populated initially
-			if (12 < j && j < 15) || (1 < i && i < 4) {
-				c.Populate()
-			}
 			t = append(t, c)
 		}
 		b = append(b, t)
@@ -32,6 +29,7 @@ func NewGrid(rows, cols int) *Grid {
 
     return &Grid{
     	b: b,
+    	settingUp: true,
 	}
 
 }
@@ -40,30 +38,55 @@ func (g *Grid) Board() [][]*Cell {
     return g.b
 }
 
+func (g *Grid) IsSetup() bool {
+	return ! g.settingUp
+}
+
+func (g *Grid) FinishedSetup() {
+	g.settingUp = false
+}
+
+func (g *Grid) RestartSetup() {
+	g = NewGrid(ROWS, COLS)
+	g.settingUp = true
+}
+
+func (g *Grid) Plot(imd *imdraw.IMDraw, p pixel.Vec) {
+	xPlot, yPlot := p.XY()
+
+	i := int(xPlot) / CELL_W
+	j := int(yPlot) / CELL_H
+
+	cell := g.Board()[j][i]
+	cell.Populate()
+	DrawCell(imd, cell)
+}
+
+
 func IsOutOfBounds(x, y int) bool {
 	if x < 0 || y < 0 || x >= COLS || y >= ROWS {
-		//fmt.Println("out of bounds - ", y, x)
 		return true
 	}
 
 	return false
 }
 
-func CellLiveNeighbors(g *Grid, xPos, yPos int) (count int) {
+func (g *Grid) CellLiveNeighbors(xPos, yPos int) (count int) {
 	count = 0
+	var neighborXPos, neighborYPos int
 
 	for horiz := -1; horiz < 2; horiz++ {
 		for vert := -1; vert < 2; vert++ {
 
-			if IsOutOfBounds(xPos + horiz, yPos + vert) {
-				//fmt.Println("lomatin- ", yPos + vert, xPos + horiz)
+			neighborXPos = xPos + horiz
+			neighborYPos = yPos + vert
+
+			if IsOutOfBounds(neighborXPos, neighborYPos) || (horiz == 0 && vert == 0) {
 				continue
 			}
 
-			//fmt.Println("vert: ", vert, "horiz: ", horiz)
-			if g.Board()[yPos + vert][xPos + horiz].IsAlive() {
+			if g.Board()[neighborYPos][neighborXPos].IsAlive() {
 				count++
-				//fmt.Println("count, ", count)
 			}
 		}
 	}
