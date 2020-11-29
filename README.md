@@ -44,3 +44,7 @@ build and save package
 
     go install
     
+## Copyright
+
+samo c 20
+    
